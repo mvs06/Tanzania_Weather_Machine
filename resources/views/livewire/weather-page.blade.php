@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weer</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body class="bg-white min-h-screen font-sans antialiased text-zinc-900">
+{{--<!DOCTYPE html>--}}
+{{--<html lang="nl">--}}
+{{--<head>--}}
+{{--    <meta charset="UTF-8" />--}}
+{{--    <meta name="viewport" content="width=device-width, initial-scale=1.0" />--}}
+{{--    <title>Weer</title>--}}
+{{--    @vite(['resources/css/app.css', 'resources/js/app.js'])--}}
+{{--</head>--}}
+<div class="bg-white min-h-screen font-sans antialiased text-zinc-900">
 
 {{-- HERO --}}
 <section class="flex flex-col items-center justify-center text-center px-4 py-28">
@@ -148,5 +148,5 @@
         </div>
     </div>
 </section>
-</body>
-</html>
+</div>
+{{--</html>--}}
