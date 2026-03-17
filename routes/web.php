@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use App\Livewire\Home;
 use App\Livewire\PhoneRegistration;
+use App\Livewire\WeatherPage;
 
 //Route::get('/', function () {
 //    return view('welcome');
@@ -19,7 +20,7 @@ Route::get('phone-registration', PhoneRegistration::class ) -> name('phone-regis
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
-Route::view("weather", "livewire.weather-page")->name('weather');
+Route::get("weather", WeatherPage::class) -> name('weather');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
