@@ -9,7 +9,6 @@ APP_NAME="${APP_NAME:-Tanzania Weather Machine}"
 APP_ENV=${APP_ENV:-production}
 APP_KEY=
 APP_DEBUG=${APP_DEBUG:-false}
-APP_URL=${APP_URL:-http://localhost:${PORT:-8080}}
 
 LOG_CHANNEL=${LOG_CHANNEL:-stack}
 LOG_LEVEL=${LOG_LEVEL:-debug}
@@ -21,6 +20,10 @@ SESSION_DRIVER=${SESSION_DRIVER:-file}
 CACHE_STORE=${CACHE_STORE:-file}
 QUEUE_CONNECTION=${QUEUE_CONNECTION:-sync}
 EOF
+
+    if [ -n "${APP_URL:-}" ]; then
+        printf 'APP_URL=%s\n' "$APP_URL" >> .env
+    fi
 fi
 
 if [ "${DB_CONNECTION:-sqlite}" = "sqlite" ]; then

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Vite;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Use root-relative Vite asset paths so deployed containers do not emit localhost URLs.
+        Vite::createAssetPathsUsing(static fn (string $path, ?bool $secure) => '/'.ltrim($path, '/'));
     }
 }

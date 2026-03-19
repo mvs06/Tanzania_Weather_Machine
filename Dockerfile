@@ -50,7 +50,6 @@ FROM php-base AS app
 ENV APP_NAME="Tanzania Weather Machine" \
     APP_ENV=production \
     APP_DEBUG=false \
-    APP_URL=http://localhost:8080 \
     DB_CONNECTION=sqlite \
     DB_DATABASE=/var/lib/laravel/database.sqlite \
     SESSION_DRIVER=file \
