@@ -40,6 +40,7 @@ COPY package.json package-lock.json ./
 
 RUN npm ci
 
+COPY --from=vendor /var/www/html/vendor ./vendor
 COPY . .
 
 RUN npm run build
