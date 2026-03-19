@@ -9,7 +9,7 @@ APP_NAME="${APP_NAME:-Tanzania Weather Machine}"
 APP_ENV=${APP_ENV:-production}
 APP_KEY=
 APP_DEBUG=${APP_DEBUG:-false}
-APP_URL=${APP_URL:-http://localhost:8000}
+APP_URL=${APP_URL:-http://localhost:${PORT:-8080}}
 
 LOG_CHANNEL=${LOG_CHANNEL:-stack}
 LOG_LEVEL=${LOG_LEVEL:-debug}
@@ -41,6 +41,10 @@ fi
 
 if [ "${RUN_MIGRATIONS:-true}" = "true" ]; then
     php artisan migrate --force --no-interaction
+fi
+
+if [ "$#" -eq 0 ]; then
+    exec php artisan serve --host=0.0.0.0 --port="${PORT:-8080}"
 fi
 
 exec "$@"

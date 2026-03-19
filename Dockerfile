@@ -12,7 +12,7 @@ RUN apt-get update \
         libonig-dev \
         libxml2-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j"$(nproc)" bcmath gd mbstring pdo_mysql pdo_sqlite xml exif \
+    && docker-php-ext-install gd mbstring pdo_sqlite xml \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
@@ -49,13 +49,14 @@ FROM php-base AS app
 ENV APP_NAME="Tanzania Weather Machine" \
     APP_ENV=production \
     APP_DEBUG=false \
-    APP_URL=http://localhost:8000 \
+    APP_URL=http://localhost:8080 \
     DB_CONNECTION=sqlite \
     DB_DATABASE=/var/lib/laravel/database.sqlite \
     SESSION_DRIVER=file \
     CACHE_STORE=file \
     QUEUE_CONNECTION=sync \
-    RUN_MIGRATIONS=true
+    RUN_MIGRATIONS=true \
+    PORT=8080
 
 COPY --chown=www-data:www-data . .
 COPY --from=vendor --chown=www-data:www-data /var/www/html/vendor ./vendor
@@ -70,7 +71,6 @@ RUN chmod +x /usr/local/bin/entrypoint \
 
 USER www-data
 
-EXPOSE 8000
+EXPOSE 8080
 
 ENTRYPOINT ["entrypoint"]
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
